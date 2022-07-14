@@ -1,0 +1,4 @@
+github.com/TwiN/go-color v1.1.0 h1:yhLAHgjp2iAxmNjDiVb6Z073NE65yoaPlcki1Q22yyQ=
+github.com/TwiN/go-color v1.1.0/go.mod h1:aKVf4e1mD4ai2FtPifkDPP5iyoCwiK08YGzGwerjKo0=
+github.com/ryanuber/columnize v2.1.2+incompatible h1:C89EOx/XBWwIXl8wm8OPJBd7kPF25UfsK2X7Ph/zCAk=
+github.com/ryanuber/columnize v2.1.2+incompatible/go.mod h1:sm1tb6uqfes/u+d4ooFouqFdy9/2g9QGwK3SQygK0Ts=

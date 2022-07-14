@@ -40,20 +40,13 @@ func (r1 Roll) Add(r2 Roll) {
 	}
 }
 
-// cancel Roll face count by an amount of shield, return remaining amount
-func (r Roll) Cancel(face Face, shieldAmount int) int {
-	faceCount, ok := r[face]
-	if !ok {
-		return shieldAmount
-	} else {
-		if faceCount > shieldAmount {
-			r[face] -= shieldAmount
-			return 0
-		} else {
-			delete(r, face)
-			return shieldAmount - faceCount
-		}
+// create a copy of a Roll
+func (r Roll) Copy() Roll {
+	copy := make(Roll)
+	for face, count := range r {
+		copy[face] = count
 	}
+	return copy
 }
 
 /********** DICE **********/

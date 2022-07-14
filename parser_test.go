@@ -5,41 +5,36 @@ import (
 	"testing"
 )
 
-func TestParseAttack(t *testing.T) {
+func TestParse_Attack(t *testing.T) {
 	att, _, _ := Parse("1R")
-	if !reflect.DeepEqual(att, DiceSet{RedDice(): 1}) {
-		t.Error()
-	}
+	expect(t,
+		reflect.DeepEqual(att, DiceSet{RedDice(): 1}))
 }
 
-func TestParseAttackMultiple(t *testing.T) {
+func TestParse_AttackMultiple(t *testing.T) {
 	att, _, _ := Parse("1R 2R")
-	if !reflect.DeepEqual(att, DiceSet{RedDice(): 3}) {
-		t.Error()
-	}
+	expect(t,
+		reflect.DeepEqual(att, DiceSet{RedDice(): 3}))
 }
 
-func TestParseEmpty(t *testing.T) {
+func TestParse_Empty(t *testing.T) {
 	att, _, _ := Parse("")
-	if !reflect.DeepEqual(att, DiceSet{}) {
-		t.Error()
-	}
+	expect(t,
+		reflect.DeepEqual(att, DiceSet{}))
 }
 
-func TestParseAttackDefence(t *testing.T) {
+func TestParse_AttackDefence(t *testing.T) {
 	att, def, isDef := Parse("1R - 2W")
-	if !reflect.DeepEqual(att, DiceSet{RedDice(): 1}) &&
-		!reflect.DeepEqual(def, DiceSet{WhiteDice(): 2}) &&
-		isDef != true {
-		t.Error()
-	}
+	expect(t,
+		reflect.DeepEqual(att, DiceSet{RedDice(): 1}) &&
+			reflect.DeepEqual(def, DiceSet{WhiteDice(): 2}) &&
+			isDef == true)
 }
 
-func TestParseDefenceOnly(t *testing.T) {
+func TestParse_DefenceOnly(t *testing.T) {
 	att, def, isDef := Parse("/ 2W")
-	if !reflect.DeepEqual(att, DiceSet{}) &&
-		!reflect.DeepEqual(def, DiceSet{WhiteDice(): 2}) &&
-		isDef != true {
-		t.Error()
-	}
+	expect(t,
+		reflect.DeepEqual(att, DiceSet{}) &&
+			reflect.DeepEqual(def, DiceSet{WhiteDice(): 2}) &&
+			isDef == true)
 }
