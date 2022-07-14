@@ -40,6 +40,22 @@ func (r1 Roll) Add(r2 Roll) {
 	}
 }
 
+// cancel Roll face count by an amount of shield, return remaining amount
+func (r Roll) Cancel(face Face, shieldAmount int) int {
+	faceCount, ok := r[face]
+	if !ok {
+		return shieldAmount
+	} else {
+		if faceCount > shieldAmount {
+			r[face] -= shieldAmount
+			return 0
+		} else {
+			delete(r, face)
+			return shieldAmount - faceCount
+		}
+	}
+}
+
 /********** DICE **********/
 
 // a Dice with 6 faces
