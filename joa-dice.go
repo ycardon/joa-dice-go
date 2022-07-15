@@ -36,6 +36,21 @@ func (r Roll) cancel(face Face, shieldCount *int) {
 	}
 }
 
+// pretty print a Roll
+func (r Roll) String() string {
+	var s string
+	for i := 0; i < int(FACE_MAX); i++ {
+		value, ok := r[Face(i)]
+		if ok && value > 0 {
+			s = fmt.Sprintf("%s | %d %s", s, value, Face(i))
+		}
+	}
+	if len(s) > 0 {
+		s = s[3:]
+	}
+	return s
+}
+
 // get a dice set from the CLI, roll and resolve it
 func main() {
 
