@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"github.com/TwiN/go-color"
-	"github.com/ryanuber/columnize"
 )
 
 // resolve an attack
@@ -39,46 +36,25 @@ func (r Roll) cancel(face Face, shieldCount *int) {
 	}
 }
 
-// pretty print a Roll
-func (r Roll) String() string {
-	var s string
-	for i := 0; i < 6; i++ {
-		value, ok := r[Face(i)]
-		if ok && value > 0 {
-			s += fmt.Sprintf("%d %s|", value, Face(i))
-		}
-	}
-	if len(s) > 1 {
-		s = s[:len(s)-1]
-	}
-	return s
-}
-
 // get a dice set from the CLI, roll and resolve it
 func main() {
+
 	InitRandom()
+	format := "%s = %s\n"
 
 	// parse input from CLI
 	input := strings.Join(os.Args[1:], " ")
 	attackDiceSet, defenceDiceSet, isDef := Parse(input)
 
-	// init colomnize
-	config := columnize.DefaultConfig()
-	config.Glue = color.InBlue(" | ")
-
 	// roll and print the results
 	attack := attackDiceSet.Roll()
 	if !isDef {
-		output := []string{fmt.Sprintf("%s|%s", color.InBold("attack"), attack)}
-		fmt.Println(columnize.Format(output, config))
+		fmt.Printf(format, "attack", attack)
 	} else {
 		defence := defenceDiceSet.Roll()
 		result := ResolveAttack(attack, defence)
-		output := []string{
-			fmt.Sprintf("%s|%s", color.InRed("attack"), attack),
-			fmt.Sprintf("%s|%s", color.InGreen("defense"), defence),
-			fmt.Sprintf("%s|%s", color.InCyan("result"), result),
-		}
-		fmt.Println(columnize.Format(output, config))
+		fmt.Printf(format, "attack", attack)
+		fmt.Printf(format, "defense", defence)
+		fmt.Printf(format, "result", result)
 	}
 }
