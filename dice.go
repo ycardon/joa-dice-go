@@ -26,6 +26,7 @@ const (
 	Death
 	Rally
 	DelayedRally
+	FACE_MAX
 )
 
 /********** ROLL **********/

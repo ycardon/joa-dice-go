@@ -42,7 +42,7 @@ func (r Roll) cancel(face Face, shieldCount *int) {
 // pretty print a Roll
 func (r Roll) String() string {
 	var s string
-	for i := 0; i < 6; i++ {
+	for i := 0; i < int(FACE_MAX); i++ {
 		value, ok := r[Face(i)]
 		if ok && value > 0 {
 			s += fmt.Sprintf("%d %s|", value, Face(i))
