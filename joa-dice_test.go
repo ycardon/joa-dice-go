@@ -77,3 +77,8 @@ func TestRoll_ApplyDefense_None(t *testing.T) {
 	expect(t,
 		reflect.DeepEqual(res, Roll{Kill: 1, Disrupt: 2, Push: 3}))
 }
+
+func TestRoll_String(t *testing.T) {
+	roll := Roll{DelayedRally: 1, FACE_MAX: 1}
+	expect(t, roll.String() == "1 DelayedRally")
+}
