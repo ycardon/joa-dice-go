@@ -1,4 +1,4 @@
-# joa-dices-go
+# joa-dice-go
 
 Rewrite of the TypeScript project [JoA Dice](https://github.com/ycardon/joa-dices) in Go
 
