@@ -17,7 +17,7 @@ func Parse(s string) (attack DiceSet, defence DiceSet, isDef bool) {
 		} else {
 			init := word[:len(word)-1]
 			last := strings.ToUpper(word)[len(word)-1]
-			dice, ok := pareDice(last)
+			dice, ok := parseDice(last)
 			if ok {
 				if !isDef {
 					attack[dice] += parseInt(init)
@@ -38,7 +38,7 @@ func parseInt(s string) int {
 	return value
 }
 
-func pareDice(char byte) (d Dice, ok bool) {
+func parseDice(char byte) (d Dice, ok bool) {
 	ok = true
 	switch char {
 	case 'B':
